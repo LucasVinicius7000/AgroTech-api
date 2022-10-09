@@ -3,29 +3,29 @@ import { Sequelize, DataTypes, Model } from 'sequelize';
 import Fazenda from '../models/Fazenda.js';
 
 const User = db.define('User', {
-    id: {
+    Id: {
         type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
     },
-    nome: {
+    Nome: {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    email: {
+    Email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
     },
-    password: {
+    Password: {
         type: DataTypes.STRING,
         allowNull: false,
     }
 
 }, { tableName: 'Users', timestamps: false });
 
-User.hasMany(Fazenda, { sourceKey: 'id', foreignKey: 'idUser'});
+User.hasMany(Fazenda, { sourceKey: 'Id', foreignKey: 'IdUser'});
 
 export default User;
 

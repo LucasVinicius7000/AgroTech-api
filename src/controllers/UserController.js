@@ -1,5 +1,6 @@
 import User from '../models/User.js';
 import Fazenda from '../models/Fazenda.js';
+import bcrypt from 'bcrypt';
 
 async function ListarUsuarios(req, res) {
 
@@ -27,17 +28,19 @@ async function ListarUsuarios(req, res) {
 async function CadastrarUsuario(req, res) {
 
     const { nome, email, password, nomeFazenda } = req.body;
-    let idUser, usuario, fazenda;
+    let idUser, usuario, fazenda, hashPass;
+    hashPass = bcrypt.hashSync(password, 10);
 
+    //compareSync()
 
     await User.create({
-        nome: nome,
-        email: email,
-        password: password,
+        Nome: nome,
+        Email: email,
+        Password: hashPass,
     })
         .then((result) => {
             usuario = result.dataValues;
-            idUser = result.getDataValue('id');
+            idUser = result.getDataValue('Id');
         }).catch((error) => {
             res.json({
                 erro: true,
@@ -47,8 +50,8 @@ async function CadastrarUsuario(req, res) {
         });
 
     await Fazenda.create({
-        nomeFazenda: nomeFazenda,
-        idUser: idUser,
+        NomeFazenda: nomeFazenda,
+        IdUser: idUser,
     })
         .then((result) => {
             fazenda = result.dataValues;
@@ -60,7 +63,7 @@ async function CadastrarUsuario(req, res) {
             });
         });
 
-        
+
     if (usuario && fazenda) {
         res.json({
             erro: false,

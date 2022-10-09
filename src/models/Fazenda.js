@@ -2,17 +2,17 @@ import db from '../../database/db.js';
 import { Sequelize, DataTypes, Model } from 'sequelize';
 
 const Fazenda =  db.define('Fazenda', {
-    id: {
+    Id: {
         type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
     },
-    nomeFazenda: {
+    NomeFazenda: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    idUser: {
+    IdUser: {
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
     }
