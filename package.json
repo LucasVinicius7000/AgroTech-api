@@ -7,7 +7,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
@@ -16,5 +16,8 @@
     "sequelize": "^6.24.0",
     "sqlite3": "^5.1.2",
     "tedious": "^15.1.0"
+  },
+  "events": {
+    "restart": "cls || clear"
   }
 }

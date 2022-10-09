@@ -1,6 +1,6 @@
+
 // Dependêncies de pacotes externos
 import express from 'express';
-import sequelize from './database/db.js';
 
 // Dependências de módulos locais 
 import { routesInitialize } from './src/router/routes.js';

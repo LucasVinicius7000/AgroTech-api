@@ -1,32 +1,75 @@
 import User from '../models/User.js';
+import Fazenda from '../models/Fazenda.js';
 
 async function ListarUsuarios(req, res) {
 
-    try {
-        const users = await User.findAll();
-        console.log("Usuários listados com sucesso.");
-        res.json(users);
-    } catch (error) {
-        console.log("Falha ao listar os usuários.");
-        throw new Error(error);
+
+    const users = await User.findAll();
+
+    if (users) {
+        res.json({
+            erro: false,
+            mensagem: "Usuários listados com sucesso.",
+            data: users,
+        });
     }
+    else {
+        res.json({
+            erro: true,
+            mensagem: "Falha ao listar os usuários.",
+            data: users,
+        });
+    }
+
+
 }
 
 async function CadastrarUsuario(req, res) {
-    console.log(req.body);
-    res.json("...");
-    //const { nome, email, password } = req.body;
-    // try {
-    //     if (nome != null && email != null && password != null) {
 
-    //     }
-    //     else {
-    //         throw new Error("Dados do usuário inválidos.");
-    //     }
-    //     console.log(nome, email, password);
-    // } catch (error) {
-    //     console.log(error);
-    // }
+    const { nome, email, password, nomeFazenda } = req.body;
+    let idUser, usuario, fazenda;
+
+
+    await User.create({
+        nome: nome,
+        email: email,
+        password: password,
+    })
+        .then((result) => {
+            usuario = result.dataValues;
+            idUser = result.getDataValue('id');
+        }).catch((error) => {
+            res.json({
+                erro: true,
+                mensagem: "Ocorreu um erro cadastrar o usuário." + error,
+                data: { usuario, fazenda }
+            });
+        });
+
+    await Fazenda.create({
+        nomeFazenda: nomeFazenda,
+        idUser: idUser,
+    })
+        .then((result) => {
+            fazenda = result.dataValues;
+        }).catch((error) => {
+            res.json({
+                erro: true,
+                mensagem: "Ocorreu um erro cadastrar o usuário." + error,
+                data: { usuario, fazenda }
+            });
+        });
+
+        
+    if (usuario && fazenda) {
+        res.json({
+            erro: false,
+            mensagem: "Usuário cadastrado com sucesso.",
+            data: { usuario, fazenda },
+        });
+    }
+
+
 }
 
 
