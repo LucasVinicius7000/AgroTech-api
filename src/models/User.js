@@ -25,8 +25,6 @@ const User = db.define('User', {
 
 }, { tableName: 'Users', timestamps: false });
 
-User.hasMany(Fazenda, { sourceKey: 'Id', foreignKey: 'IdUser'});
-
 export default User;
 
 

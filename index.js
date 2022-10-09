@@ -5,6 +5,8 @@ import express from 'express';
 // Dependências de módulos locais 
 import { routesInitialize } from './src/router/routes.js';
 import db from './database/db.js';
+import setAssociations from './database/associations.js';
+
 
 
 const port = 3001;
@@ -13,6 +15,7 @@ api.use(express.json());
 
 
 try {
+    setAssociations();
     db.sync();
     console.log("Banco de dados conectado!");
 } catch (error) {
