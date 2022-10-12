@@ -28,6 +28,9 @@ async function ListarUsuarios(req, res) {
 async function CadastrarUsuario(req, res) {
 
     const { nome, email, password, nomeFazenda } = req.body;
+
+    // Validação pendente
+
     let idUser, usuario, fazenda, hashPass;
     hashPass = bcrypt.hashSync(password, 10);
 

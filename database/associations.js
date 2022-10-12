@@ -1,14 +1,18 @@
 import Fazenda from "../src/models/Fazenda.js";
 import User from "../src/models/User.js";
-import HistoricoDados from "../src/models/HistoricoDados.js";
+import DadosColeta from "../src/models/DadosColeta.js";
+import Coleta from "../src/models/Coleta.js";
 
 
 export default function setAssociations() {
 
-    // Um usuário tem UMA ou MUITAS fazendas.
+    // Um Usuário tem UMA ou MUITAS Fazendas.
     User.hasMany(Fazenda, { sourceKey:'Id', foreignKey:'IdUser'});
 
-    // Um histórico de dados pertence a UMA fazenda.
-    Fazenda.hasMany(HistoricoDados, { sourceKey:'Id', foreignKey: 'IdFazenda'});
+    // Uma Fazenda tem UMA ou MUITAS Coletas De Dados.
+    Fazenda.hasMany(Coleta, { sourceKey:'Id', foreignKey: 'IdFazenda'});
+
+    // Uma Coleta De Dados tem UM ou MUITOS Dados De Coleta.
+    Coleta.hasMany(DadosColeta, { sourceKey: 'Id', foreignKey: 'IdColeta'})
 
 }

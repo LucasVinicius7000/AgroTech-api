@@ -1,6 +1,5 @@
 import db from '../../database/db.js';
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import HistoricoDados from '../models/HistoricoDados.js';
 
 const Fazenda = db.define('Fazenda', {
     Id: {
@@ -18,7 +17,7 @@ const Fazenda = db.define('Fazenda', {
         allowNull: false,
     }
 
-}, { tableName: 'Fazendas', timestamps: false });
+}, { tableName: 'Fazendas' });
 
 
 export default Fazenda;

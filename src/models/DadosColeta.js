@@ -2,7 +2,7 @@ import db from '../../database/db.js';
 import { Sequelize } from 'sequelize';
 
 
-const HistoricoDados = db.define('HistoricoDados', {
+const DadosColeta = db.define('DadosColeta', {
 
     Id: {
         type: Sequelize.INTEGER.UNSIGNED,
@@ -22,13 +22,13 @@ const HistoricoDados = db.define('HistoricoDados', {
         type: Sequelize.DOUBLE,
         allowNull: true,
     },
-    IdFazenda: {
+    IdColeta: {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
-    },
+    }
 
 
-}, { tableName: 'HistoricosDados'});
+}, { tableName: 'DadosColeta', timestamps: false });
 
 
-export default HistoricoDados;
+export default DadosColeta;

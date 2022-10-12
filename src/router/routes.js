@@ -1,6 +1,6 @@
 // Importa os controllers
 import { CadastrarUsuario, ListarUsuarios } from '../controllers/UserController.js';
-
+import { CadastrarColetaCompleta } from '../controllers/FazendaController.js'
 
 // Inicializa as rotas 
 async function routesInitialize(api) {
@@ -11,12 +11,12 @@ async function routesInitialize(api) {
     })
 
     // GETs
-    api.get('/users/listar', ListarUsuarios);
+    api.get('/user/listar', ListarUsuarios);
 
 
     // POSTs
-    api.post('/users/cadastrar', CadastrarUsuario)
-
+    api.post('/user/cadastrar', CadastrarUsuario);
+    api.post('/fazenda/cadastrar/coleta', CadastrarColetaCompleta);
 
 
 }
