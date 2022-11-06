@@ -45,9 +45,9 @@ async function CadastrarUsuario(req, res) {
             usuario = result.dataValues;
             idUser = result.getDataValue('Id');
         }).catch((error) => {
-            res.json({
+            res.status(500).send({
                 erro: true,
-                mensagem: "Ocorreu um erro cadastrar o usuário." + error,
+                mensagem: "Ocorreu um erro cadastrar o usuário. " + error,
                 data: { usuario, fazenda }
             });
         });
@@ -59,16 +59,16 @@ async function CadastrarUsuario(req, res) {
         .then((result) => {
             fazenda = result.dataValues;
         }).catch((error) => {
-            res.json({
+            res.status(500).send({
                 erro: true,
-                mensagem: "Ocorreu um erro cadastrar o usuário." + error,
+                mensagem: "Ocorreu um erro cadastrar o usuário. " + error,
                 data: { usuario, fazenda }
             });
         });
 
 
     if (usuario && fazenda) {
-        res.json({
+        res.status(201).send({
             erro: false,
             mensagem: "Usuário cadastrado com sucesso.",
             data: { usuario, fazenda },
