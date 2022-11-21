@@ -2,6 +2,7 @@
 // Dependêncies de pacotes externos
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 // Dependências de módulos locais 
 import { routesInitialize } from './src/router/routes.js';
 import db from './database/db.js';
@@ -10,8 +11,12 @@ import setAssociations from './database/associations.js';
 
 
 const port = 3001;
+dotenv.config('.env');
 var api = express();
-api.use(cors());
+api.use(cors({
+    "origin": process.env.CLIENT_URL,
+    "credentials": true
+}));
 api.use(express.json());
 
 try {
