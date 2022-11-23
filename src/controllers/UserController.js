@@ -122,18 +122,23 @@ async function IsLogged(req, res) {
   const token = cookies.split("AgroTechAuthorization" + "=")[1];
 
   try {
-
     if (jwt.verify(token, process.env.JWT_SECRET_KEY)) {
       console.log("Token autenticado com sucesso.");
+
+      let objectToken = jwt.decode(token);
+
+      let recoveredUser = await User.findOne({ where: { Id: objectToken?.userId } });
+      delete recoveredUser.dataValues["Password"];
+
       res.status(200).send({
         erro: false,
         mensagem: "Token validado com sucesso.",
         data: {
+          user: recoveredUser,
           isValid: true,
         },
       });
     }
-
   } catch (error) {
     console.log("Token inválido.");
     res.status(401).send({

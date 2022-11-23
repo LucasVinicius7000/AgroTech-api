@@ -17,7 +17,7 @@ const Fazenda = db.define('Fazenda', {
         allowNull: false,
     }
 
-}, { tableName: 'Fazendas' });
+}, { tableName: 'Fazendas',  timestamps: false });
 
 
 export default Fazenda;

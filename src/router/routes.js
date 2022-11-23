@@ -1,6 +1,6 @@
 // Importa os controllers
 import { CadastrarUsuario, ListarUsuarios, LoginUsuario, IsLogged } from '../controllers/UserController.js';
-import { CadastrarColetaCompleta } from '../controllers/FazendaController.js'
+import { CadastroDadosColeta, CadastroInicioColeta, FinalizaColetaIniciada, GetFazendaByUserId, ListAllColetasByIdUser } from '../controllers/FazendaController.js'
 
 // Inicializa as rotas 
 async function routesInitialize(api) {
@@ -13,12 +13,17 @@ async function routesInitialize(api) {
     // GETs
     api.get('/user/listar', ListarUsuarios);
     api.get('/user/isLogged', IsLogged);
-
+    api.get('/fazenda/buscarFazenda', GetFazendaByUserId);
+    api.get('/coletas/listaColetas', ListAllColetasByIdUser)
 
     // POSTs
     api.post('/user/cadastrar', CadastrarUsuario);
     api.post('/user/login', LoginUsuario);
-    api.post('/fazenda/cadastrar/coleta', CadastrarColetaCompleta);
+    api.post('/fazenda/cadastrarInicioColeta', CadastroInicioColeta);
+    api.post('/fazenda/cadastrarDadosColeta', CadastroDadosColeta);
+
+    // PATCHs
+    api.patch('/fazenda/finalizarColeta', FinalizaColetaIniciada);
 
 
 }

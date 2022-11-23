@@ -12,15 +12,15 @@ const DadosColeta = db.define('DadosColeta', {
     },
     TemperaturaAmbiente: {
         type: Sequelize.DOUBLE,
-        allowNull: true,
+        allowNull: false,
     },
     UmidadeDoAr: {
         type: Sequelize.DOUBLE,
-        allowNull: true,
+        allowNull: false,
     },
     UmidadeDoSolo: {
         type: Sequelize.DOUBLE,
-        allowNull: true,
+        allowNull: false,
     },
     IdColeta: {
         type: Sequelize.INTEGER.UNSIGNED,
@@ -28,7 +28,7 @@ const DadosColeta = db.define('DadosColeta', {
     }
 
 
-}, { tableName: 'DadosColeta', timestamps: false });
+}, { tableName: 'DadosColeta' });
 
 
 export default DadosColeta;
