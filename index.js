@@ -9,7 +9,7 @@ import db from './database/db.js';
 import setAssociations from './database/associations.js';
 
 
-
+//aaaaaaaaaaa
 const port = 3001;
 dotenv.config('.env');
 var api = express();
