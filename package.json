@@ -19,7 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "sequelize": "^6.24.0",
-    "sqlite3": "^5.1.2",
+    "sqlite3": "^5.1.5",
     "tedious": "^15.1.0"
   },
   "events": {
